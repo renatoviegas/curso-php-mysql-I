@@ -1,7 +1,7 @@
 <?php include("cabecalho.php"); ?>
 
 	<h1>Formulário de Cadastro</h1>
-	<form action="adiciona-produto.php">
+	<form action="adiciona-produto.php" method="post">
 		
 		<table class="table">
 			<tr>
@@ -14,6 +14,11 @@
 				<td><input name="preco" type="number" class="form-control"></td>
 			</tr>
 			
+			<tr>
+				<td><label for="descricao">Descrição:</label></td>
+				<td><textarea name="descricao" class="form-control"></textarea></td>
+			</tr>
+
 			<tr>
 				<td><button class="btn btn-primary" type="submit">Cadastrar</button></td>
 			</tr>

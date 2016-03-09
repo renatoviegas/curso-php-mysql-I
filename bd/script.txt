@@ -10,3 +10,8 @@ insert into produtos (nome, preco) values ('Bicicleta', 300);
 insert into produtos (nome, preco) values ('Ultrabook', 7000);
 insert into produtos (nome, preco) values ('Desktop PC', 3000);
 insert into produtos (nome, preco) values ('Tablet', 900);
+
+-- Adicionando coluna
+alter table produtos add column descricao text;
+
+update produtos set descricao = concat('descrição padrão do ', nome);
