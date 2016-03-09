@@ -1,0 +1,12 @@
+Criar database no mySQL ==> Loja
+
+-- Criar a tabela de produtos
+create table produtos (id integer auto_increment primary key, nome varchar(255), preco decimal(10,2));
+
+-- Incluindo produtos
+insert into produtos (nome, preco) values ('Carro', 20000);
+insert into produtos (nome, preco) values ('Motocicleta', 10000);
+insert into produtos (nome, preco) values ('Bicicleta', 300);
+insert into produtos (nome, preco) values ('Ultrabook', 7000);
+insert into produtos (nome, preco) values ('Desktop PC', 3000);
+insert into produtos (nome, preco) values ('Tablet', 900);
