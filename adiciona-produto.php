@@ -1,11 +1,7 @@
 <?php 
 	include("cabecalho.php");
+	include("banco-produto.php");
 	include("conecta.php");
-	
-	function insereProduto($conexao, $nome, $preco) {
-		$sql = "insert into produtos (nome, preco) values ('{$nome}', {$preco})";
-		return mysqli_query($conexao, $sql);
-	}
 	
 	$nome = $_GET['nome'];
 	$preco = $_GET['preco'];
