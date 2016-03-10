@@ -3,6 +3,7 @@
 	include("banco-produto.php");
 	include("conecta.php");
 	
+	$id = $_POST['id'];
 	$nome = $_POST['nome'];
 	$preco = $_POST['preco'];
 	$descricao = $_POST['descricao'];
@@ -14,14 +15,14 @@
 		$usado = "false";
 	}
 	
-	if (insereProduto($conexao, $nome, $preco, $descricao, $usado, $categoria_id)) {
+	if (alteraProduto($conexao, $id, $nome, $preco, $descricao, $usado, $categoria_id)) {
 	?>
-		<p class="alert-success">Produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
+		<p class="alert-success">Produto <?= $nome ?>, <?= $preco ?> alterado com sucesso!</p>
 	<?php
 	} else {
 		$msgErro = mysqli_error($conexao);
 	?>
-		<p class="alert-danger">Ocorreu um erro ao tentar adicionar o produto <? = $nome ?>.</p>
+		<p class="alert-danger">Ocorreu um erro ao tentar alterar o produto <? = $nome ?>.</p>
 		<p class="text-danger">Error: <?= $msgErro ?></p>
 	<?php
 	}

@@ -15,3 +15,19 @@ insert into produtos (nome, preco) values ('Tablet', 900);
 alter table produtos add column descricao text;
 
 update produtos set descricao = concat('descrição padrão do ', nome);
+
+-- Criar tabela de Categorias
+create table categorias (id integer auto_increment primary key, nome varchar(255));
+
+-- Incluindo categorias
+insert into categorias (nome) values ("Esporte"), ("Escolar"), ("Mobilidade"), ("Eletrônicos");
+
+-- Adicionar coluna na tabela de produtos
+alter table produtos add column categoria_id integer;
+
+-- Update padrão na tabela de produtos
+update produtos set categoria_id = 3 where id <=3;
+update produtos set categoria_id = 4 where id > 3;
+
+-- Adicionando a coluna de usado na tabela de produtos.
+alter table produtos add column usado boolean default false;
