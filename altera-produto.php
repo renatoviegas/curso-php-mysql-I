@@ -1,7 +1,6 @@
 <?php 
-	include("cabecalho.php");
-	include("banco-produto.php");
-	include("conecta.php");
+	require_once("cabecalho.php");
+	require_once("banco-produto.php");
 	
 	$id = $_POST['id'];
 	$nome = $_POST['nome'];
@@ -16,16 +15,12 @@
 	}
 	
 	if (alteraProduto($conexao, $id, $nome, $preco, $descricao, $usado, $categoria_id)) {
-	?>
-		<p class="alert-success">Produto <?= $nome ?>, <?= $preco ?> alterado com sucesso!</p>
-	<?php
+		$_SESSION["success"] = "Produto alterado {$nome} com sucesso!";
+		header("location: produto-lista.php");
 	} else {
 		$msgErro = mysqli_error($conexao);
-	?>
-		<p class="alert-danger">Ocorreu um erro ao tentar alterar o produto <? = $nome ?>.</p>
-		<p class="text-danger">Error: <?= $msgErro ?></p>
-	<?php
+		$_SESSION["danger"] = "Ocorreu um erro ao tentar alterar o produto. [Error: {$msgErro}]";
+		header("location: " . $_SERVER['HTTP_REFERER']);
 	}
-
-	include("rodape.php"); 
-?>
+	
+	die();

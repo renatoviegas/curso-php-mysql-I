@@ -1,7 +1,9 @@
 <?php 
-	include("cabecalho.php");
-	include("banco-produto.php");
-	include("conecta.php");
+	require_once("cabecalho.php");
+	require_once("banco-produto.php");
+	require_once("logica-usuario.php");
+	
+	verificaUsuario();
 	
 	$nome = $_POST['nome'];
 	$preco = $_POST['preco'];
@@ -15,16 +17,12 @@
 	}
 	
 	if (insereProduto($conexao, $nome, $preco, $descricao, $usado, $categoria_id)) {
-	?>
-		<p class="alert-success">Produto <?= $nome ?>, <?= $preco ?> adicionado com sucesso!</p>
-	<?php
+		$_SESSION["success"] = "Produto {$nome} adicionado com sucesso!";
+		header("location: produto-lista.php");
 	} else {
 		$msgErro = mysqli_error($conexao);
-	?>
-		<p class="alert-danger">Ocorreu um erro ao tentar adicionar o produto <? = $nome ?>.</p>
-		<p class="text-danger">Error: <?= $msgErro ?></p>
-	<?php
+		$_SESSION["danger"] = "Ocorreu um erro ao tentar adicionar o produto {$nome}. [Error: {$msgErro}]";
+		header("location: produto-formulario.php");
 	}
-
-	include("rodape.php"); 
-?>
+	
+	die();

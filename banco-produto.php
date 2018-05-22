@@ -1,4 +1,6 @@
-<?php 
+<?php
+	require_once("conecta.php");
+	
 	function listaProdutos($conexao) {
 		$lstProduto = array();
 		$resultado = mysqli_query($conexao, "select p.*, c.nome as categoria_nome 
@@ -20,11 +22,25 @@
 	}
 	
 	function insereProduto($conexao, $nome, $preco, $descricao, $usado, $categoria_id) {
+		
+		$nome = mysqli_real_escape_string($conexao, $nome);
+		$preco = mysqli_real_escape_string($conexao, $preco);
+		$descricao = mysqli_real_escape_string($conexao, $descricao);
+		$usado = mysqli_real_escape_string($conexao, $usado);
+		$categoria_id = mysqli_real_escape_string($conexao, $categoria_id);
+		
 		$sql = "insert into produtos (nome, preco, descricao, usado, categoria_id) values ('{$nome}', {$preco}, '{$descricao}', {$usado}, {$categoria_id})";
 		return mysqli_query($conexao, $sql);
 	}
 	
 	function alteraProduto($conexao, $id, $nome, $preco, $descricao, $usado, $categoria_id) {
+		
+		$nome = mysqli_real_escape_string($conexao, $nome);
+		$preco = mysqli_real_escape_string($conexao, $preco);
+		$descricao = mysqli_real_escape_string($conexao, $descricao);
+		$usado = mysqli_real_escape_string($conexao, $usado);
+		$categoria_id = mysqli_real_escape_string($conexao, $categoria_id);
+		
 		$sql = "update produtos set nome = '{$nome}',
 		                            descricao = '{$descricao}',
 									preco = {$preco},
@@ -37,4 +53,5 @@
 	function removeProduto($conexao, $id) {
 		$sql = "delete from produtos where id = {$id}";
 		return mysqli_query($conexao, $sql);
+		//return true;
 	}

@@ -1,9 +1,11 @@
 <?php 
-	include("banco-produto.php");
-	include("conecta.php");
+	require_once("banco-produto.php");
 	
 	$id = $_POST['id'];
 		
 	if (removeProduto($conexao, $id)) {
-		header("location: produto-lista.php?removido=true");
+		session_start();
+		$_SESSION["success"] = "Produto removido com sucesso!";
+		header("location: produto-lista.php");
+		die();
 	}
