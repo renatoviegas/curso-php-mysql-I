@@ -7,11 +7,16 @@
 											   from produtos p left join categorias c
 											     on c.id = p.categoria_id 
 											 order by p.id");	
+											 
+	    $json_array = array();
 		
 		while($produto = mysqli_fetch_assoc($resultado)) { 
+			$json_array[] = $produto;
 			array_push($lstProduto, $produto);
 		}	
 		
+		//echo json_encode($json_array);
+
 		return $lstProduto;
 	}
 	
