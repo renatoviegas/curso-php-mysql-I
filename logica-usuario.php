@@ -12,7 +12,7 @@
 	
 	function verificaUsuario() {
 		if (!usuarioEstaLogado()) {
-			$_SESSION["danger"] = "Usuário sem permissão de acesso a esta funcionalidade!";
+			$_SESSION["danger"] = "Usuário sem permissão de acesso a esta funcionalidade! - Produção";
 			Header("Location: index.php");
 			die();
 		}
